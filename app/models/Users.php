@@ -2,24 +2,24 @@
 
 class Users extends Wayfinder {
 
-    private $_users,
-            $_seed = 'Wayfinder';
+    private $_stuff, $_db;
 
     function __construct() {
-        $users = json_decode(file_get_contents('https://randomuser.me/api/?results=10&seed='.$this->_seed), true);
-        $this->_users = $users['results'];
+        $this->load('libraries', 'db');
+        $this->_db = new Db();
     }
 
     public function getUsers() {
-        return $this->_users;
+        $sql = "SELECT * FROM users ORDER BY id ASC";
+        return $this->_db->query($sql);
     }
 
-    public function getUser($id) {
-        if($id > 0 && isset($this->_users[$id-1])) {
-            return $this->_users[$id-1];
-        } else {
-            return false;
-        }
+    public function getUser() {
+
+    }
+
+    public function updateSelf() {
+
     }
 
 }

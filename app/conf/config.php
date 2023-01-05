@@ -32,3 +32,14 @@ if(!__PRODUCTION) {
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 }
+
+// cache number (change this for increment the cache buster)
+$cacheNumber = 0;
+
+// if this is the live site, use the simplified cache busting technique
+if($_SERVER['SERVER_NAME'] == 'challenge.charanj.it') {
+    define('__CACHE', date('Y').'.'.$cacheNumber);
+// for anywhere else, bust the cache with a random number
+} else {
+    define('__CACHE', date('Y').'.'.$cacheNumber.'.'.rand());
+}
