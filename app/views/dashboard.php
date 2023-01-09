@@ -1,3 +1,15 @@
+<h2>Challengers</h2>
+
+<ul>
+<?php
+
+foreach($users as $user) {
+    echo '<li style="color: '.$user['color'].';">'.$user['name'].'</li>';
+}
+
+?>
+</ul>
+
 <?php
 
 if($myData['allTime']['average']) {

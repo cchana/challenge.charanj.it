@@ -31,6 +31,7 @@ class Compete extends Wayfinder {
 
     public function dashboard() {
         $data['title'] = 'Dasboard';
+        $data['users'] = $this->_users->getUsers();
         $data['myData'] = [
             'allTime' => [
                 'average' => $this->_progress->getUsersAverageSpeed($_SESSION['userId'])

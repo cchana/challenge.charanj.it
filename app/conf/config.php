@@ -33,6 +33,8 @@ if(!__PRODUCTION) {
     error_reporting(E_ALL);
 }
 
+define('__TITLE', 'Challenge');
+
 // cache number (change this for increment the cache buster)
 $cacheNumber = 0;
 
