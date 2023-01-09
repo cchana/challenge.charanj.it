@@ -4,7 +4,7 @@
 <?php
 
 foreach($users as $user => $details) {
-    echo '<li style="color: '.$details['color'].';">'.$details['name'].'</li>';
+    echo '<li><a href="/compete/activity/list/'.$user.'" style="color: '.$details['color'].';">'.$details['name'].'</a></li>';
 }
 
 ?>

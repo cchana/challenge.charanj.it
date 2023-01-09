@@ -9,13 +9,20 @@ class Progress extends Wayfinder {
         $this->_db = new Db();
     }
 
-    public function getMyActivities() {
-        $sql = "SELECT * FROM progress WHERE deleted = 0 AND user_id = ".$this->_db->escape($_SESSION['userId'])." ORDER BY activity_date DESC";
+    public function getActivities($user) {
+        if(!$user) {
+            $user = $this->_db->escape($_SESSION['userId']);
+        } else {
+            $user = $this->_db->escape($user);
+        }
+        $sql = "SELECT * FROM progress WHERE deleted = 0 AND user_id = ".$user." ORDER BY activity_date DESC";
         return $this->_db->query($sql);
     }
 
-    public function getMyActivity($activityId) {
-
+    public function getActivity($activityId) {
+        $activityId = $this->_db->escape($activityId);
+        $sql = "SELECT * FROM progress WHERE id = ".$activityId." LIMIT 1";
+        return $this->_db->query($sql)[0];
     }
 
     public function createActivitiy() {
@@ -39,8 +46,12 @@ class Progress extends Wayfinder {
 
     }
 
-    public function deleteActivity() {
-
+    public function deleteActivity($activityId) {
+        $activityId = $this->_db->escape($activityId);
+        $user = $this->_db->escape($_SESSION['userId']);
+        //$sql = "DELETE FROM progress WHERE user_id = ".$user." AND id = ".$activityId." LIMIT 1";
+        $sql = "UPDATE progress SET deleted = 1 WHERE user_id = ".$user." AND id = ".$activityId." LIMIT 1";
+        return $this->_db->query($sql);
     }
 
     /**

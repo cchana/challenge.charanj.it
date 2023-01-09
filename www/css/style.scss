@@ -81,6 +81,9 @@ li:not(:last-child) {
     margin: 0 0 $base;
 }
 
+a {
+}
+
 // landscape mode AND mobile devices+
 @include mq(600px) {
     header,

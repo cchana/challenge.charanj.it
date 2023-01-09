@@ -33,9 +33,10 @@ if(isset($pageId)) {
         <nav>
             <ul>
                 <li <?php if($_SERVER['REQUEST_URI'] == '/') {echo 'class="active"';} ?>><a href="/"><img src="/images/logo.png?v=<?php echo __CACHE; ?>" alt="Challenge" /></a></li>
+                <li><a href="#" onclick="return refresh();">Refresh</a></li>
                 <?php if(isset($_SESSION['hash'])) { ?>
                 <li><a href="/compete/activity/add">Add Activity</a></li>
-                <li><a href="/compete/activity">Activity</a></li>
+                <li><a href="/compete/activity">My Activity</a></li>
                 <li><a href="/compete/logout">Logout <?php echo $_SESSION['user']; ?></a></li>
                 <?php } ?>
             </ul>

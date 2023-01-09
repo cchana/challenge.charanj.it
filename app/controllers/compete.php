@@ -40,17 +40,23 @@ class Compete extends Wayfinder {
         $this->_loadPage('dashboard', $data);
     }
 
-    public function activity($action = false) {
-        if(!$action) {
-            header('Location: /compete/activity/list');
+    public function activity($action = false, $id = false) {
+        if(!$action || ($action == 'list' && !$id)) {
+            header('Location: /compete/activity/list/'.$_SESSION['user']);
             exit;
         }
         switch($action) {
             case 'list':
-                $this->_activityList();
+                $this->_activityList($id);
                 break;
             case 'add':
                 $this->_addActivity();
+                break;
+            case 'delete':
+                $this->_deleteActivity($id);
+                break;
+            case 'view':
+                $this->_viewActivity($id);
                 break;
         }
     }
@@ -67,12 +73,30 @@ class Compete extends Wayfinder {
         $this->_loadPage('activity-add', $data);
     }
 
-    private function _activityList() {
+    private function _activityList($user) {
+        $users = $this->_users->getUsers();
+        $userId = $users[$user]['id'];
         $data = [
-            'activities' => $this->_progress->getMyActivities(),
-            'title' => 'My Activities'
+            'activities' => $this->_progress->getActivities($userId),
+            'title' => 'My Activities',
+            'userData' => $users[$user]
         ];
         $this->_loadPage('activity-list', $data);
+    }
+
+    private function _deleteActivity($activityId) {
+        $this->_progress->deleteActivity($activityId);
+        header('Location: /compete/activity/list');
+        exit;
+    }
+
+    private function _viewActivity($activityId) {
+        $data = [
+            'activity' => $this->_progress->getActivity($activityId),
+            'title' => 'Activity details'
+        ];
+        $data['user'] = $this->_users->getUser($data['activity']['user_id']);
+        $this->_loadPage('activity-view', $data);
     }
 
     public function logout() {
