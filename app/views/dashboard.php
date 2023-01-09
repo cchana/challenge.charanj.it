@@ -3,8 +3,8 @@
 <ul>
 <?php
 
-foreach($users as $user) {
-    echo '<li style="color: '.$user['color'].';">'.$user['name'].'</li>';
+foreach($users as $user => $details) {
+    echo '<li style="color: '.$details['color'].';">'.$details['name'].'</li>';
 }
 
 ?>

@@ -4,8 +4,8 @@
             <label for="username">Name</label>
             <select id="username" name="username" required>
                 <option value="">Please Choose</option>
-                <?php foreach($users as $user) {
-                    echo '<option value="'.$user['handle'].'">'.$user['name'].'</option>';
+                <?php foreach($users as $user => $details) {
+                    echo '<option value="'.$user.'">'.$details['name'].'</option>';
                 } ?>
             </select>
         </li>
