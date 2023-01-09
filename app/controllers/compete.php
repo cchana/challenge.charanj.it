@@ -63,9 +63,9 @@ class Compete extends Wayfinder {
 
     private function _addActivity() {
         if(!empty($_POST)) {
-            $_POST['time'] = '00:'.$_POST['time'];
+            $_POST['time'] = $_POST['time'];
             $id = $this->_progress->createActivitiy();
-            header('Location: /compete/dashboard');
+            header('Location: /compete/activity/list');
             exit;
         } else {
             $data['title'] = 'Add activity';

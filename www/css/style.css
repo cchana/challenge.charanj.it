@@ -1,11 +1,12 @@
+@charset "UTF-8";
 :root {
-  --color-primary--3: hsl(20, 100%, 20%);
-  --color-primary--2: hsl(20, 100%, 30%);
-  --color-primary--1: hsl(20, 100%, 40%);
-  --color-primary-0: hsl(20, 100%, 50%);
-  --color-primary-1: hsl(20, 100%, 60%);
-  --color-primary-2: hsl(20, 100%, 70%);
-  --color-primary-3: hsl(20, 100%, 80%);
+  --color-primary--3: hsl(109, 94%, 13%);
+  --color-primary--2: hsl(109, 94%, 23%);
+  --color-primary--1: hsl(109, 94%, 33%);
+  --color-primary-0: hsl(109, 94%, 43%);
+  --color-primary-1: hsl(109, 94%, 58%);
+  --color-primary-2: hsl(109, 94%, 83%);
+  --color-primary-3: hsl(109, 94%, 98%);
   --color-neutral-0: hsl(0, 0%, 0%);
   --color-neutral-1: hsl(0, 0%, 20%);
   --color-neutral-2: hsl(0, 0%, 40%);
@@ -28,18 +29,61 @@ body {
   padding: 16px;
 }
 
+header nav {
+  border-bottom: 1px solid var(--color-neutral-4);
+  margin: 0 0 32px;
+}
 header nav ul {
-  display: flex;
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(4, 1fr);
   list-style-type: none;
   margin: 0;
-  padding: 0 0 32px;
+  padding: 0;
+}
+header nav ul:has(#menu:checked) {
+  background-color: var(--color-primary-3);
+}
+header nav ul:has(#menu:checked) li:nth-child(n+2) {
+  display: block;
+}
+header nav ul:has(#menu:checked) li:last-child label {
+  color: var(--color-neutral-0);
 }
 header nav ul li {
-  flex: 1;
+  display: block;
+  order: 2;
+  text-align: center;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+header nav ul li:nth-child(n+2):not(:last-child) {
+  display: none;
+}
+header nav ul li:first-child {
+  grid-column: span 3;
+  order: 1;
+  text-align: left;
+}
+header nav ul li:last-child {
+  font-size: 32px;
+  grid-column: span 1;
+  order: 1;
+  text-align: right;
+}
+header nav ul li:last-child label {
+  color: var(--color-primary-0);
 }
 header nav ul li:not(:first-child) {
   flex: 0;
-  margin: 0 0 0 16px;
+}
+header nav ul li:not(:has(a)) {
+  padding: 4px;
+}
+header nav ul li a {
+  display: block;
+  padding: 4px;
 }
 header nav img {
   max-width: 64px;
@@ -57,11 +101,11 @@ p {
 }
 
 h1 {
-  font-size: 40px;
+  font-size: 32px;
 }
 
 h2 {
-  font-size: 32px;
+  font-size: 26px;
 }
 
 h3 {
@@ -84,12 +128,317 @@ li:not(:last-child) {
   margin: 0 0 8px;
 }
 
+a {
+  color: var(--color-primary-0);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--color-primary--1);
+  text-decoration: underline;
+}
+
+form ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+form ul li {
+  margin: 0;
+  max-width: 500px;
+  padding: 0;
+  width: 50%;
+}
+form ul li:not(:first-child) {
+  margin: 16px 0 0;
+}
+form ul li label,
+form ul li span {
+  display: block;
+}
+form ul li label {
+  text-transform: uppercase;
+}
+form ul li span {
+  font-size: 12px;
+}
+form ul li input[type=text],
+form ul li input[type=password],
+form ul li input[type=number],
+form ul li input[type=time],
+form ul li input[type=date],
+form ul li select {
+  border: 1px solid black;
+  border-radius: 0;
+  box-sizing: border-box;
+  padding: 8px;
+  width: 100%;
+}
+form ul li input[type=submit] {
+  background-color: var(--color-primary-0);
+  border: 0;
+  font-size: 20px;
+  padding: 16px 32px;
+  text-transform: uppercase;
+}
+form ul li div {
+  align-items: center;
+  display: grid;
+  gap: 8px;
+  grid-template-columns: repeat(3, auto 1fr);
+  width: 100%;
+}
+form ul li div label {
+  text-align: right;
+  width: fit-content;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+table th,
+table td {
+  box-sizing: border-box;
+  padding: 8px;
+}
+table th:first-child:has(a),
+table td:first-child:has(a) {
+  padding: 0;
+}
+table th:first-child:has(a) a,
+table td:first-child:has(a) a {
+  display: block;
+  padding: 8px;
+}
+table th {
+  text-align: left;
+}
+table td:first-child {
+  width: 150px;
+}
+table thead th {
+  background-color: var(--color-primary-3);
+  border-bottom: 1px solid var(--color-primary--2);
+  position: relative;
+}
+table thead th:first-child:after {
+  content: "↓";
+  opacity: 0.5;
+  position: absolute;
+  right: 8px;
+}
+table thead th:not(:last-child) {
+  border-right: 1px solid var(--color-primary-2);
+}
+table tbody tr:nth-child(even) {
+  background-color: var(--color-primary-3);
+}
+table tbody tr:hover td {
+  background-color: var(--color-primary-2);
+}
+table .difficulty {
+  background-color: gold;
+  border-radius: 16px;
+  font-size: 12px;
+  padding: 4px 8px;
+  text-transform: uppercase;
+}
+table .difficulty.difficulty-easy {
+  background-color: tomato;
+  color: white;
+}
+table .difficulty.difficulty-hard {
+  background-color: mediumseagreen;
+  color: white;
+}
+table .difficulty.difficulty-easy {
+  background-color: tomato;
+  color: white;
+}
+table .difficulty.difficulty-hard {
+  background-color: mediumseagreen;
+  color: white;
+}
+table .difficulty.difficulty-easy {
+  background-color: tomato;
+  color: white;
+}
+table .difficulty.difficulty-hard {
+  background-color: mediumseagreen;
+  color: white;
+}
+table .difficulty.difficulty-easy {
+  background-color: tomato;
+  color: white;
+}
+table .difficulty.difficulty-hard {
+  background-color: mediumseagreen;
+  color: white;
+}
+table .difficulty.difficulty-easy {
+  background-color: tomato;
+  color: white;
+}
+table .difficulty.difficulty-hard {
+  background-color: mediumseagreen;
+  color: white;
+}
+table .difficulty.difficulty-easy {
+  background-color: tomato;
+  color: white;
+}
+table .difficulty.difficulty-hard {
+  background-color: mediumseagreen;
+  color: white;
+}
+table .difficulty.difficulty-easy {
+  background-color: tomato;
+  color: white;
+}
+table .difficulty.difficulty-hard {
+  background-color: mediumseagreen;
+  color: white;
+}
+table .difficulty.difficulty-easy {
+  background-color: tomato;
+  color: white;
+}
+table .difficulty.difficulty-hard {
+  background-color: mediumseagreen;
+  color: white;
+}
+table .difficulty.difficulty-easy {
+  background-color: tomato;
+  color: white;
+}
+table .difficulty.difficulty-hard {
+  background-color: mediumseagreen;
+  color: white;
+}
+table .difficulty.difficulty-easy {
+  background-color: tomato;
+  color: white;
+}
+table .difficulty.difficulty-hard {
+  background-color: mediumseagreen;
+  color: white;
+}
+
+#menu {
+  display: none;
+}
+
+.heading {
+  align-items: center;
+  border-bottom: 1px solid var(--color-neutral-4);
+  display: flex;
+  margin: 0 0 40px;
+}
+.heading h1 {
+  flex: 1;
+}
+.heading span {
+  display: none;
+}
+
+.btn {
+  background-color: var(--color-primary-2);
+  border-radius: 32px;
+  color: var(--color-primary--3);
+  font-size: 20px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+.btn:hover {
+  background-color: var(--color-primary-1);
+  color: var(--color-primary--3);
+}
+
+.challengers {
+  display: flex;
+  flex-wrap: wrap;
+  list-style-type: none;
+  margin: 0 0 40px;
+  padding: 0;
+  width: 100%;
+}
+.challengers li {
+  box-sizing: border-box;
+  font-size: 12px;
+  font-weight: 400;
+  margin: 0 0 8px;
+  padding: 0;
+  width: 50%;
+}
+.challengers li:nth-child(odd) {
+  padding-right: 8px;
+}
+.challengers li a {
+  border-radius: 32px;
+  box-sizing: border-box;
+  color: var(--color-neutral-5);
+  display: block;
+  padding: 8px 8px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: background-color 0.2s ease-in-out;
+  width: 100%;
+}
+.challengers li a:hover {
+  background-color: var(--color-neutral-3) !important;
+}
+
+footer {
+  margin: 80px auto 0;
+}
+
 @media screen and (min-width: 600px) {
   header,
 main,
 footer {
-    margin: 0 auto;
     max-width: 1280px;
+  }
+  header,
+main {
+    margin: 0 auto;
+  }
+  header nav ul {
+    grid-template-columns: repeat(10, 1fr);
+  }
+  header nav ul li {
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  header nav ul li:first-child {
+    grid-column: span 6;
+  }
+  header nav ul li:not(:first-child) {
+    margin: 0 0 0 16px;
+  }
+  header nav ul li:nth-child(n+2):not(:last-child) {
+    display: block;
+  }
+  header nav ul li:last-child {
+    display: none;
+  }
+  .heading span {
+    display: inline;
+  }
+  .challengers li {
+    font-size: 16px;
+    width: 25%;
+  }
+  .challengers li:not(:last-child) {
+    padding-right: 8px;
+  }
+}
+@media screen and (min-width: 1000px) {
+  .challengers li {
+    font-size: 24px;
+  }
+  .challengers li a {
+    padding: 16px;
   }
 }
 @media (prefers-color-scheme: dark) {

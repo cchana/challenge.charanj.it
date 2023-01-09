@@ -1,15 +1,22 @@
 <h2>Challengers</h2>
 
-<ul>
+<ul class="challengers">
 <?php
 
+$output = '';
 foreach($users as $user => $details) {
-    echo '<li><a href="/compete/activity/list/'.$user.'" style="color: '.$details['color'].';">'.$details['name'].'</a></li>';
+    if($user != $_SESSION['user']) {
+        $output .= '<li><a href="/compete/activity/list/'.$user.'" style="background-color: '.$details['color'].';">'.$details['name'].'</a></li>';
+    } else {
+        $output = '<li><a href="/compete/activity/list/'.$user.'" style="background-color: '.$details['color'].';">You</a></li>'.$output;
+    }
 }
+echo $output;
 
 ?>
 </ul>
 
+<!--
 <?php
 
 if($myData['allTime']['average']) {
@@ -24,4 +31,4 @@ if($myData['allTime']['average']) {
 <ul>
     <li><a href="/compete/activity/list">See my activities</a></li>
     <li><a href="/compete/activity/add">Add an activity</a></li>
-</ul>
+</ul-->

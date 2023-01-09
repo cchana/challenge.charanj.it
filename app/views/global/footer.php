@@ -1,14 +1,14 @@
 
     </article>
 
-    <footer>
-
-        <p>
-            &#169; <?php echo date('Y'); ?> <a href="https://charanj.it" target="_blank">Charanjit Chana</a></p>
-
-    </footer>
-
 </main>
+
+<footer>
+
+    <p>
+        &#169; <?php echo date('Y'); ?> <a href="https://charanj.it" target="_blank">Charanjit Chana</a></p>
+
+</footer>
 
 <script>
 // generic prompt when an possibly unreversable action is about to take place

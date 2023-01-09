@@ -36,7 +36,7 @@ if(!__PRODUCTION) {
 define('__TITLE', 'Challenge');
 
 // cache number (change this for increment the cache buster)
-$cacheNumber = 1;
+$cacheNumber = 7;
 
 // if this is the live site, use the simplified cache busting technique
 if($_SERVER['SERVER_NAME'] == 'challenge.charanj.it') {

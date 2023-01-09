@@ -34,6 +34,7 @@ class Progress extends Wayfinder {
             }
         }
         $sql .= join(', ', $cols);
+
         if(!$this->_db->query($sql)) {
             echo $this->_db->error();
             return false;
