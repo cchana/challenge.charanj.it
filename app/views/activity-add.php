@@ -5,8 +5,10 @@
         <li>
             <label for="activity">Activity Type</label>
             <select id="activity" name="activity" required>
+                <option>Please choose</option>
                 <option value="0">Cycling</option>
                 <option value="1">Football</option>
+                <option value="3">Hula Hoop</option>
                 <option value="2">Walking</option>
             </select>
         </li>
@@ -17,7 +19,7 @@
         </li>
         <li>
             <label for="distance">Distance (km)</label>
-            <input type="number" id="distance" name="distance" step="0.1" required />
+            <input type="number" id="distance" name="distance" step="0.1" />
         </li>
         <li>
             <label for="minutes">Duration</label>
@@ -25,7 +27,7 @@
                 <label for="hours">H:</label>
                 <input type="number" id="hours" value="0" />
                 <label for="minutes">M:</label>
-                <input type="number" id="minutes" value="0" max="60" />
+                <input type="number" id="minutes" value="0" max="60" required />
                 <label for="seconds">S:</label>
                 <input type="number" id="seconds" value="0" max="60" />
             </div>
