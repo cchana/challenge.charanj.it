@@ -9,13 +9,35 @@ class Progress extends Wayfinder {
         $this->_db = new Db();
     }
 
-    public function getActivities($user) {
+    public function getActivities($user, $filter = false) {
         if(!$user) {
             $user = $this->_db->escape($_SESSION['userId']);
         } else {
             $user = $this->_db->escape($user);
         }
-        $sql = "SELECT * FROM progress WHERE deleted = 0 AND user_id = ".$user." ORDER BY activity_date DESC";
+        $sql = "SELECT * FROM progress WHERE deleted = 0 AND user_id = ".$user;
+
+        if($filter) {
+            $sql .= " AND activity = ";
+            switch($filter) {
+                case 'football':
+                    $sql .= 1;
+                    break;
+                case 'hula':
+                    $sql .= 3;
+                    break;
+                case 'walking':
+                    $sql .= 2;
+                    break;
+                case 'cycling':
+                default:
+                    $sql .= 0;
+                    break;
+            }
+        }
+
+        $sql .= " ORDER BY activity_date DESC";
+
         return $this->_db->query($sql);
     }
 

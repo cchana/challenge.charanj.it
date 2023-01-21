@@ -1,3 +1,11 @@
+
+<p>Currently showing <select id="activity-filter">
+    <option <?php if($currentFilter == 'cycling') { echo 'selected'; } ?> value="cycling">Cycling</option>
+    <option <?php if($currentFilter == 'football') { echo 'selected'; } ?> value="football">Football</option>
+    <option <?php if($currentFilter == 'hula') { echo 'selected'; } ?> value="hula">Hula hoop</option>
+    <option <?php if($currentFilter == 'walking') { echo 'selected'; } ?> value="walking">Walking</option>
+</select></p>
+
 <?php
 
 if($activities) {
@@ -104,3 +112,14 @@ foreach($activities as $activity) {
 <p>Nothing to see here... yet!</p>
 
 <?php } ?>
+
+<script>
+
+let filters = document.getElementById('activity-filter');
+filters.addEventListener('change', function(ev) {
+    let value = ev.srcElement.value,
+        newPath = '/compete/activity/list/cchana/' + value;
+    window.location.href = newPath;
+});
+
+</script>

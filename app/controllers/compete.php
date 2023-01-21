@@ -43,14 +43,17 @@ class Compete extends Wayfinder {
         $this->_loadPage('dashboard', $data);
     }
 
-    public function activity($action = false, $id = false) {
+    public function activity($action = false, $id = false, $filter = false) {
         if(!$action || ($action == 'list' && !$id)) {
             header('Location: /compete/activity/list/'.$_SESSION['user']);
             exit;
         }
         switch($action) {
             case 'list':
-                $this->_activityList($id);
+                if(!$filter) {
+                    $filter = 'cycling';
+                }
+                $this->_activityList($id, $filter);
                 break;
             case 'add':
                 $this->_addActivity();
@@ -76,13 +79,18 @@ class Compete extends Wayfinder {
         $this->_loadPage('activity-add', $data);
     }
 
-    private function _activityList($user) {
+    private function _activityList($user, $filter) {
+
+        $currentUrlParts = explode('/', $_SERVER['REQUEST_URI']);
+        $currentFilter = end($currentUrlParts);
+
         $users = $this->_users->getUsers();
         $userId = $users[$user]['id'];
         $data = [
-            'activities' => $this->_progress->getActivities($userId),
+            'activities' => $this->_progress->getActivities($userId, $filter),
             'title' => 'My Activities',
-            'userData' => $users[$user]
+            'userData' => $users[$user],
+            'currentFilter' => $currentFilter
         ];
         $this->_loadPage('activity-list', $data);
     }
