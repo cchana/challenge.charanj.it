@@ -63,7 +63,7 @@ foreach($activities as $activity) {
             echo $hour.':'.$minute.':'.$second;
 
             ?></td>
-            <td class="cell-number">-</td>
+            <td class="cell-number">&mdash;</td>
             <td></td>
             <?php if($_SESSION['userId'] == $userData['id']) { ?>
                 <td></td>
@@ -74,7 +74,7 @@ foreach($activities as $activity) {
             <td class="cell-number"><?php $avgDist = $distance/$i;
                         echo $avgDist;
             ?>km</td>
-            <td class="cell-number"><?php $avgTime = $time/$i;
+            <td class="cell-number"><!--<?php $avgTime = $time/$i;
 
 
                         $hours = $avgTime/60/60;
@@ -85,7 +85,7 @@ foreach($activities as $activity) {
                         $second = str_pad($avgTime-(($hour*60*60)+($minute*60)), 2, '0', STR_PAD_LEFT);
 
                         echo $hour.':'.$minute.':'.$second;
-            ?></td>
+            ?>-->&mdash;</td>
             <td class="cell-number"><?php
 
             echo number_format((($avgDist/$avgTime)*60*60), 2).'km/h';

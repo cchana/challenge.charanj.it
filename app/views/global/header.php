@@ -17,6 +17,7 @@
     <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#180D23" />
     <link rel="manifest" href="/manifest.json">
     <meta name="robots" content="noindex" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js"></script>
 </head>
 <body<?php
 

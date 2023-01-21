@@ -94,4 +94,16 @@ class Progress extends Wayfinder {
     public function getLeaderboard($timePeriod) {
     }
 
+    public function getDistanceCycled($weeks = 4) {
+        $sql = "SELECT SUM(distance) as total_distance, CONCAT(YEAR(activity_date), '/', WEEK(activity_date)) as week
+                FROM progress
+                WHERE deleted = 0
+                AND activity = 0
+                AND activity_date >= (NOW() - INTERVAL 4 WEEK)
+                GROUP BY week
+                ORDER BY week DESC";
+
+        return $this->_db->query($sql);
+    }
+
 }

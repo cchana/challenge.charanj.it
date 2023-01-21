@@ -37,6 +37,9 @@ class Compete extends Wayfinder {
                 'average' => $this->_progress->getUsersAverageSpeed($_SESSION['userId'])
             ]
         ];
+        $data['dashboard'] = [
+            'totalCycled' => $this->_progress->getDistanceCycled()
+        ];
         $this->_loadPage('dashboard', $data);
     }
 
